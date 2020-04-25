@@ -47,9 +47,6 @@ class Installer
 
 		// Show message
 		self::showMessage($event);
-
-		// Delete unneeded files
-		//self::deleteSelf();
 	}
 
 	/**

@@ -35,9 +35,6 @@
 		"testdox": "ci4-system\\vendor\\bin\\phpunit --testdox",
 		"precommit": "Arifrh\\GitHooks\\PreCommit::CI4",
 		"install-CI4": "Arifrh\\Installer\\Installer::postInstall",
-		"post-install-cmd": [
-            "@precommit"
-        ],
 		"post-update-cmd": [
             "@composer dump-autoload",
             "@precommit"

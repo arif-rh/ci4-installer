@@ -1,0 +1,50 @@
+{
+	"name": "arif-rh/ci4-installer",
+	"type": "project",
+	"description": "Installer for CodeIgniter4 starter project managed inside sub directory",
+	"homepage": "https://github.com/arif-rh/ci4-installer",
+	"license": "MIT",
+	"keywords": ["codeigniter4", "codeigniter4 installer", "codeigniter4 subfolder", "codeigniter4 sub directory", "codeigniter4 starter"],
+	"require": {
+		"arif-rh/ci4-dynamic-model": "^0.1",
+		"codeigniter4/framework": "^4.0",
+		"php": ">=7.2"
+	},
+	"require-dev": {
+		"arif-rh/git-hooks": "^0.1",
+		"mikey179/vfsstream": "1.6.*",
+		"php-coveralls/php-coveralls": "^2.2",
+		"phpunit/phpunit": "^8.5"
+	},
+	"autoload": {
+		"psr-4": {
+			"Arifrh\\Installer\\": "ci4-system/bin"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Tests\\Support\\": "tests/_support"
+		}
+	},
+	"config": {
+		"vendor-dir": "ci4-system/vendor",
+		"sort-packages": true
+	},
+	"scripts": {
+		"test": "ci4-system\\vendor\\bin\\phpunit",
+		"testdox": "ci4-system\\vendor\\bin\\phpunit --testdox",
+		"precommit": "Arifrh\\GitHooks\\PreCommit::CI4",
+		"install-CI4": "Arifrh\\Installer\\Installer::postInstall",
+		"post-install-cmd": [
+            "@precommit"
+        ],
+		"post-update-cmd": [
+            "@composer dump-autoload",
+            "@precommit"
+        ],
+		"post-create-project-cmd": [
+			"@install-CI4",
+			"@precommit"
+        ]
+	}
+}
